@@ -1,5 +1,7 @@
 # Scenario 2 — Ansible
 
+
+## DO NOT CHANGE 
 Do not change the `inventory/` folder structure.
 Put `ansible_user` and `ansible_host` in `inventory/inventory/monitoring.yml`.
 
