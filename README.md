@@ -1,78 +1,39 @@
-# DevOps Exam
+# Scenario 2
 
-This exam has 2 parts. Keep answers short.
-English is better. Persian is OK.
-You can use AI. Read your text once before you push.
+Draw the **output** system. You can use AI.
+Then explain your code. English is better. Persian is OK.
 
-## Start
+## Architecture
 
-1. Open https://auth.fanap.kubelog.ir
-2. Enter the last 4 digits of your phone number.
-3. Run the setup commands on that page.
-4. First SSH = Scenario 1. Second SSH = Scenario 2.
-
-## Submit
-
-1. Fork https://github.com/fanapcampus/exam-template
-2. Name the fork `devops-exam`. Make it public.
-3. Send the URL in private message before **19:00**.
-4. Work only on these branches:
-   - `doc-1` — Scenario 1 write-up (`README.md`)
-   - `scenario-2` — Ansible code
-   - `doc-2` — Scenario 2 write-up (`README.md`)
-5. Do not commit after **19:00**.
-
-## Scenario 1
-
-The first VM is broken. Files are in `/opt/service-catalog`.
-Read the files. Use this picture.
+Replace this picture with your real design.
 
 ```mermaid
 flowchart LR
-  User(["User"]) -->|"graph / nodes / edges / impact"| LB["load balancer (nginx)"]
-  LB --> API["backend"]
-  API --> DB[("PostgreSQL")]
+  User(["User"]) --> Grafana["Grafana"]
+  Grafana --> Prometheus["Prometheus"]
+  Prometheus --> NodeExp["node_exporter"]
 ```
 
-When it works:
+## Code
 
-```bash
-curl http://localhost/graph
-```
+### Playbook
 
-You need HTTP 200 and a `postgres` node in the JSON.
+### Role: prometheus
 
-Write what you did on branch `doc-1`.
+### Role: grafana
 
-## Scenario 2
+### Role: node_exporter
 
-On the second VM (or Vagrant), use Ansible to install:
+### Inventory
 
-- Prometheus on 9090
-- Grafana on 3000
-- node_exporter
-- Grafana datasource = Prometheus
-- one dashboard with CPU and memory
+## Login
 
-Start from branch `scenario-2`. Do not change the `inventory/` folder.
-Put the user and IP in inventory.
+Grafana user:
 
-I will run:
+Grafana password:
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-ansible-playbook -i inventory main.yml -b --private-key ~/.ssh/id_ed25519_fanap
-```
+# Challenges
 
-The code must run.
+Write one item for each challenge. What broke, and how you fixed it.
 
-Write the doc on branch `doc-2`. Put Grafana user and password there.
-
-## Score
-
-Scenario 1: find 30% · fix 40% · write-up 30%. Find and fix matters most.
-
-Scenario 2: working code 50% · write-up 50%.
-If the code does not run, I only look at the doc quickly.
+-
