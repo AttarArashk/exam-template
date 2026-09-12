@@ -1,78 +1,76 @@
-# DevOps Exam
+# Scenario 1
 
-This exam has 2 parts. Keep answers short.
+Use one heading for each problem.
+Write what was wrong and how you fixed it.
+Paste the config you changed (only the changed part).
+Paste the commands you used.
+Write every step you tried, even guesses.
+
 English is better. Persian is OK.
-You can use AI. Read your text once before you push.
 
-## Start
+## Problem 1: (short name)
 
-1. Open https://auth.fanap.kubelog.ir
-2. Enter the last 4 digits of your phone number.
-3. Run the setup commands on that page.
-4. First SSH = Scenario 1. Second SSH = Scenario 2.
+What was wrong:
 
-## Submit
+How I fixed it:
 
-1. Fork https://github.com/fanapcampus/exam-template
-2. Name the fork `devops-exam`. Make it public.
-3. Send the URL in private message before **19:00**.
-4. Work only on these branches:
-   - `doc-1` — Scenario 1 write-up (`README.md`)
-   - `scenario-2` — Ansible code
-   - `doc-2` — Scenario 2 write-up (`README.md`)
-5. Do not commit after **19:00**.
+Config I changed (only the changed part):
 
-## Scenario 1
-
-The first VM is broken. Files are in `/opt/service-catalog`.
-Read the files. Use this picture.
-
-```mermaid
-flowchart LR
-  User(["User"]) -->|"graph / nodes / edges / impact"| LB["load balancer (nginx)"]
-  LB --> API["backend"]
-  API --> DB[("PostgreSQL")]
 ```
 
-When it works:
-
-```bash
-curl http://localhost/graph
 ```
 
-You need HTTP 200 and a `postgres` node in the JSON.
+Commands I used:
 
-Write what you did on branch `doc-1`.
-
-## Scenario 2
-
-On the second VM (or Vagrant), use Ansible to install:
-
-- Prometheus on 9090
-- Grafana on 3000
-- node_exporter
-- Grafana datasource = Prometheus
-- one dashboard with CPU and memory
-
-Start from branch `scenario-2`. Do not change the `inventory/` folder.
-Put the user and IP in inventory.
-
-I will run:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-ansible-playbook -i inventory main.yml -b --private-key ~/.ssh/id_ed25519_fanap
 ```
 
-The code must run.
+```
 
-Write the doc on branch `doc-2`. Put Grafana user and password there.
+## Problem 2: (short name)
 
-## Score
+What was wrong:
 
-Scenario 1: find 30% · fix 40% · write-up 30%. Find and fix matters most.
+How I fixed it:
 
-Scenario 2: working code 50% · write-up 50%.
-If the code does not run, I only look at the doc quickly.
+Config I changed (only the changed part):
+
+```
+
+```
+
+Commands I used:
+
+```
+
+```
+
+## Problem 3: (short name)
+
+What was wrong:
+
+How I fixed it:
+
+Config I changed (only the changed part):
+
+```
+
+```
+
+Commands I used:
+
+```
+
+```
+
+# Extra problems
+
+Write side problems here. For example: your laptop, a wrong config change, or internet.
+Write how much time each one took.
+
+-
+
+# Reminder
+
+Which parts were extra problems, not the real bugs?
+
+-
