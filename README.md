@@ -27,4 +27,6 @@ vagrant up
 Set inventory to the Vagrant user and IP (`vagrant` / `192.168.56.10`).
 Keep this `Vagrantfile` in the repo.
 
+You can also use the Vagrant layout from [ansible_tutorial](https://github.com/fanapcampus/ansible_tutorial).
+
 The code must run. I will run what you leave here.
