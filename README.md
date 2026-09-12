@@ -1,8 +1,10 @@
 # DevOps Exam
 
-This exam has 2 parts. Keep answers short.
-English is better. Persian is OK.
-You can use AI. Read your text once before you push.
+This exam has 2 parts. 
+
++ Keep answers short.
++ English is better. Persian is OK.
++ You can use AI. Read your text once before you push.
 
 ## Start
 
@@ -17,9 +19,9 @@ You can use AI. Read your text once before you push.
 2. Keep the name `exam-template`. Make it public.
 3. Send your public fork URL in [this form](https://docs.google.com/forms/d/e/1FAIpQLSd2tC9HDaLtJpzJGOU3seGmcdvb_liu8d9cHVXwOxGM8aeOvg/viewform) before **19:00**.
 4. Work only on these branches:
-  - `doc-1` — Scenario 1 write-up (`README.md`)
-  - `scenario-2` — Ansible code
-  - `doc-2` — Scenario 2 write-up (`README.md`)
+  - [`doc-1`](https://github.com/fanapcampus/exam-template/tree/doc-1) — Scenario 1 write-up (`README.md`)
+  - [`scenario-2`](https://github.com/fanapcampus/exam-template/tree/scenario-2) — Ansible code
+  - [`doc-2`](https://github.com/fanapcampus/exam-template/tree/doc-2) — Scenario 2 write-up (`README.md`)
 5. Do not commit after **19:00**.
 
 
@@ -46,7 +48,7 @@ curl http://localhost/graph
 
 You need HTTP 200 and the proper output.
 
-Write what you did on branch `doc-1`.
+Write what you did on branch [`doc-1`](https://github.com/fanapcampus/exam-template/tree/doc-1).
 
 ## Scenario 2
 
@@ -58,7 +60,7 @@ On the second VM (or Vagrant), use Ansible to install:
 - Grafana datasource = Prometheus
 - one dashboard with CPU and memory
 
-Start from branch `scenario-2`. Do not change the `inventory/` folder.
+Start from branch [`scenario-2`](https://github.com/fanapcampus/exam-template/tree/scenario-2). Do not change the `inventory/` folder.
 Put the user and IP in inventory.
 
 I will run:
@@ -72,11 +74,17 @@ ansible-playbook -i inventory main.yml -b --private-key ~/.ssh/id_ed25519_fanap
 
 The code must run.
 
-Write the doc on branch `doc-2`. Put Grafana user and password there.
+Write the doc on branch [`doc-2`](https://github.com/fanapcampus/exam-template/tree/doc-2). Put Grafana user and password there.
 
 ## Score
 
-Scenario 1: find 30% · fix 40% · write-up 30%. Find and fix matters most.
+Scenario 1(Find and fix matters most): 
+    + find 30% 
+    + fix 40% 
+    + write-up doc 30%. 
+    
 
-Scenario 2: working code 50% · write-up 50%.
+Scenario 2: 
+    + working code 50% 
+    + write-up 50%.
 If the code does not run, I only look at the doc quickly.
