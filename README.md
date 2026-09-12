@@ -17,60 +17,29 @@ How I fixed it:
 Config I changed (only the changed part):
 
 ```
-
+# For example
+# Append this line in requirements.txt 
+httpx>=0.27.0,<1
 ```
 
 Commands I used:
 
 ```
-
+# For example
+ls ~
+df -h 
 ```
 
 ## Problem 2: (short name)
 
-What was wrong:
 
-How I fixed it:
 
-Config I changed (only the changed part):
-
-```
-
-```
-
-Commands I used:
-
-```
-
-```
-
-## Problem 3: (short name)
-
-What was wrong:
-
-How I fixed it:
-
-Config I changed (only the changed part):
-
-```
-
-```
-
-Commands I used:
-
-```
-
-```
 
 # Extra problems
 
 Write side problems here. For example: your laptop, a wrong config change, or internet.
 Write how much time each one took.
 
--
+For example:
++ Weak Internet connection (10 min)
 
-# Reminder
-
-Which parts were extra problems, not the real bugs?
-
--
