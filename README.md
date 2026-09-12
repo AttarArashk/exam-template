@@ -1,7 +1,9 @@
 # Scenario 2
 
 Draw the **output** system. You can use AI.
-Then explain your code. English is better. Persian is OK.
+Then explain your code. 
+
+English is better. Persian is OK.
 
 ## Architecture
 
@@ -16,24 +18,25 @@ flowchart LR
 
 ## Code
 
-### Playbook
+### Playbook & Roles
 
-### Role: prometheus
-
-### Role: grafana
-
-### Role: node_exporter
+Explain the playbook or roles you have created. 
 
 ### Inventory
+Explain what did you add in the inventory
 
-## Login
-
-Grafana user:
-
-Grafana password:
+## Credentials / Login
+Add any login or credential data here. For example
+```
+# Grafana
+user: admin
+pass: admin
+```
 
 # Challenges
 
 Write one item for each challenge. What broke, and how you fixed it.
+For example: 
 
--
++ Internet Connection: Iran block downloading from dockerhub 
++ Access to VM is not available through my network
