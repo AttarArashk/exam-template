@@ -13,6 +13,7 @@
   hosts: monitoring
   become: true
   roles:
-    - { role: prometheus, tags: prometheus }
-    - { role: grafana, tags: grafana }
-    - { role: node_exporter, tags: node_exporter }
+    - { role: monitoring, tags: prometheus }
+    ### OR
+    # - { role: prometheus, tags: prometheus }
+    # - { role: grafana, tags: grafana }
