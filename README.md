@@ -13,7 +13,6 @@ Replace this picture with your real design.
 flowchart LR
   User(["User"]) --> Grafana["Grafana"]
   Grafana --> Prometheus["Prometheus"]
-  Prometheus --> NodeExp["node_exporter"]
 ```
 
 ## Code
