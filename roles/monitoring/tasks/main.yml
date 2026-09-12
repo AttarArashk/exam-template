@@ -1,5 +1,149 @@
 ---
-# Install Monitoring. It must listen .
-# Add Prometheus as a datasource.
-# Add one dashboard with CPU and memory.
-[]
+- name: Refresh APT metadata and install Prometheus prerequisites
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - prometheus
+      - prometheus-node-exporter
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Ensure the APT keyring directory exists
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Install the Grafana APT signing key
+  ansible.builtin.copy:
+    src: grafana.asc
+    dest: /etc/apt/keyrings/grafana.asc
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Configure the Grafana APT repository
+  ansible.builtin.apt_repository:
+    repo: "{{ grafana_apt_repository }}"
+    filename: grafana
+    state: present
+    update_cache: true
+
+- name: Install Grafana
+  ansible.builtin.apt:
+    name: grafana
+    state: present
+
+- name: Configure Prometheus scrape targets
+  ansible.builtin.template:
+    src: prometheus.yml.j2
+    dest: /etc/prometheus/prometheus.yml
+    owner: root
+    group: root
+    mode: '0644'
+    validate: /usr/bin/promtool check config %s
+  notify: Restart Prometheus
+
+- name: Configure Grafana HTTP listen address
+  ansible.builtin.lineinfile:
+    path: /etc/grafana/grafana.ini
+    regexp: '^;?http_addr\s*='
+    line: 'http_addr = 0.0.0.0'
+  notify: Restart Grafana
+
+- name: Configure Grafana HTTP port
+  ansible.builtin.lineinfile:
+    path: /etc/grafana/grafana.ini
+    regexp: '^;?http_port\s*='
+    line: "http_port = {{ grafana_port }}"
+  notify: Restart Grafana
+
+- name: Create Grafana provisioning directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: grafana
+    group: grafana
+    mode: '0750'
+  loop:
+    - /etc/grafana/provisioning/datasources
+    - /etc/grafana/provisioning/dashboards
+    - /var/lib/grafana/dashboards
+
+- name: Provision Prometheus as the Grafana datasource
+  ansible.builtin.template:
+    src: prometheus-datasource.yml.j2
+    dest: /etc/grafana/provisioning/datasources/prometheus.yml
+    owner: grafana
+    group: grafana
+    mode: '0640'
+  notify: Restart Grafana
+
+- name: Provision the Grafana dashboard provider
+  ansible.builtin.copy:
+    src: dashboard-provider.yml
+    dest: /etc/grafana/provisioning/dashboards/system.yml
+    owner: grafana
+    group: grafana
+    mode: '0640'
+  notify: Restart Grafana
+
+- name: Provision the CPU and memory dashboard
+  ansible.builtin.copy:
+    src: node-cpu-memory.json
+    dest: /var/lib/grafana/dashboards/node-cpu-memory.json
+    owner: grafana
+    group: grafana
+    mode: '0640'
+  notify: Restart Grafana
+
+- name: Enable and start monitoring services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop:
+    - prometheus
+    - prometheus-node-exporter
+    - grafana-server
+
+- name: Apply service configuration changes before validation
+  ansible.builtin.meta: flush_handlers
+
+- name: Wait for Prometheus and node exporter ports
+  ansible.builtin.wait_for:
+    host: 127.0.0.1
+    port: "{{ item }}"
+    state: started
+    timeout: 30
+  loop:
+    - "{{ prometheus_port }}"
+    - "{{ node_exporter_port }}"
+
+- name: Wait for Grafana to finish its first startup
+  ansible.builtin.wait_for:
+    host: 127.0.0.1
+    port: "{{ grafana_port }}"
+    state: started
+    timeout: 90
+
+- name: Verify Prometheus readiness
+  ansible.builtin.uri:
+    url: "http://127.0.0.1:{{ prometheus_port }}/-/ready"
+    status_code: 200
+  changed_when: false
+
+- name: Verify Grafana health
+  ansible.builtin.uri:
+    url: "http://127.0.0.1:{{ grafana_port }}/api/health"
+    status_code: 200
+  changed_when: false
+
+- name: Verify node exporter metrics endpoint
+  ansible.builtin.uri:
+    url: "http://127.0.0.1:{{ node_exporter_port }}/metrics"
+    status_code: 200
+  changed_when: false
