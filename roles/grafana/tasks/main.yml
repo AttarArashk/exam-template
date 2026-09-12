@@ -1,0 +1,5 @@
+---
+# Install Grafana. It must listen on {{ grafana_port }}.
+# Add Prometheus as a datasource.
+# Add one dashboard with CPU and memory.
+[]

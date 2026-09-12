@@ -1,0 +1,3 @@
+---
+# Install Prometheus. It must listen on {{ prometheus_port }}.
+[]

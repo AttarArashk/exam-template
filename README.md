@@ -1,63 +1,13 @@
-# DevOps Exam
+# Scenario 2 — Ansible
 
-This exam has 2 parts. Keep answers short.
-English is better. Persian is OK.
-You can use AI. Read your text once before you push.
+Do not change the `inventory/` folder structure.
+Put `ansible_user` and `ansible_host` in `inventory/inventory/monitoring.yml`.
 
-## Start
+## Option 1 — given VM
 
-1. Open https://auth.fanap.kubelog.ir
-2. Enter the last 4 digits of your phone number.
-3. Run the setup commands on that page.
-4. First SSH = Scenario 1. Second SSH = Scenario 2.
+Use the **second** SSH target from https://auth.fanap.kubelog.ir
 
-## Submit
-
-1. Fork https://github.com/fanapcampus/exam-template
-2. Name the fork `devops-exam`. Make it public.
-3. Send the URL in private message before **19:00**.
-4. Work only on these branches:
-   - `doc-1` — Scenario 1 write-up (`README.md`)
-   - `scenario-2` — Ansible code
-   - `doc-2` — Scenario 2 write-up (`README.md`)
-5. Do not commit after **19:00**.
-
-## Scenario 1
-
-The first VM is broken. Files are in `/opt/service-catalog`.
-Read the files. Use this picture.
-
-```mermaid
-flowchart LR
-  User(["User"]) -->|"graph / nodes / edges / impact"| LB["load balancer (nginx)"]
-  LB --> API["backend"]
-  API --> DB[("PostgreSQL")]
-```
-
-When it works:
-
-```bash
-curl http://localhost/graph
-```
-
-You need HTTP 200 and a `postgres` node in the JSON.
-
-Write what you did on branch `doc-1`.
-
-## Scenario 2
-
-On the second VM (or Vagrant), use Ansible to install:
-
-- Prometheus on 9090
-- Grafana on 3000
-- node_exporter
-- Grafana datasource = Prometheus
-- one dashboard with CPU and memory
-
-Start from branch `scenario-2`. Do not change the `inventory/` folder.
-Put the user and IP in inventory.
-
-I will run:
+Then run:
 
 ```bash
 python -m venv .venv
@@ -66,13 +16,13 @@ pip install -r requirements.txt
 ansible-playbook -i inventory main.yml -b --private-key ~/.ssh/id_ed25519_fanap
 ```
 
-The code must run.
+## Option 2 — Vagrant
 
-Write the doc on branch `doc-2`. Put Grafana user and password there.
+```bash
+vagrant up
+```
 
-## Score
+Set inventory to the Vagrant user and IP (`vagrant` / `192.168.56.10`).
+Keep this `Vagrantfile` in the repo.
 
-Scenario 1: find 30% · fix 40% · write-up 30%. Find and fix matters most.
-
-Scenario 2: working code 50% · write-up 50%.
-If the code does not run, I only look at the doc quickly.
+The code must run. I will run what you leave here.

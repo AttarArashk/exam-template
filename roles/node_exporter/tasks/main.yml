@@ -1,0 +1,3 @@
+---
+# Install node_exporter (or similar). Prometheus must scrape it.
+[]
