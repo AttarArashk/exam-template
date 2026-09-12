@@ -20,9 +20,11 @@ flowchart LR
 ### Playbook & Roles
 
 Explain the playbook or roles you have created. 
+For example: 
++ `package`: Install requirements
 
 ### Inventory
-Explain what did you add in the inventory
+Explain your Inventory if needed
 
 ## Credentials / Login
 Add any login or credential data here. For example
@@ -37,5 +39,5 @@ pass: admin
 Write one item for each challenge. What broke, and how you fixed it.
 For example: 
 
-+ Internet Connection: Iran block downloading from dockerhub 
-+ Access to VM is not available through my network
++ **Internet Connection**: Iran block downloading from dockerhub 
++ **Access to VM** is not available through my network
