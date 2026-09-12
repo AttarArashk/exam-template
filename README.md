@@ -6,26 +6,28 @@ You can use AI. Read your text once before you push.
 
 ## Start
 
-1. Open https://auth.fanap.kubelog.ir
+1. Open [https://auth.fanap.kubelog.ir](https://auth.fanap.kubelog.ir)
 2. Enter the last 4 digits of your phone number.
 3. Run the setup commands on that page.
 4. First SSH = Scenario 1. Second SSH = Scenario 2.
 
 ## Submit
 
-1. Fork https://github.com/fanapcampus/exam-template
-2. Name the fork `devops-exam`. Make it public.
-3. Send the URL in private message before **19:00**.
+1. Fork [https://github.com/fanapcampus/exam-template](https://github.com/fanapcampus/exam-template)
+2. Keep the name `exam-template`. Make it public.
+3. Send your public fork URL in [this form](https://docs.google.com/forms/d/e/1FAIpQLSd2tC9HDaLtJpzJGOU3seGmcdvb_liu8d9cHVXwOxGM8aeOvg/viewform) before **19:00**.
 4. Work only on these branches:
-   - `doc-1` — Scenario 1 write-up (`README.md`)
-   - `scenario-2` — Ansible code
-   - `doc-2` — Scenario 2 write-up (`README.md`)
+  - `doc-1` — Scenario 1 write-up (`README.md`)
+  - `scenario-2` — Ansible code
+  - `doc-2` — Scenario 2 write-up (`README.md`)
 5. Do not commit after **19:00**.
+
+
 
 ## Scenario 1
 
-The first VM is broken. Files are in `/opt/service-catalog`.
-Read the files. Use this picture.
+Someone tried to run [service-catalog](https://github.com/fanapcampus/service-catalog) on the first VM and could not.
+Files are in `/opt/service-catalog`. Read the files. Use this picture.
 
 ```mermaid
 flowchart LR
@@ -34,13 +36,15 @@ flowchart LR
   API --> DB[("PostgreSQL")]
 ```
 
+
+
 When it works:
 
 ```bash
 curl http://localhost/graph
 ```
 
-You need HTTP 200 and a `postgres` node in the JSON.
+You need HTTP 200 and the proper output.
 
 Write what you did on branch `doc-1`.
 
