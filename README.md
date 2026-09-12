@@ -171,7 +171,7 @@ Prometheus targets page, both `prometheus` and `node_exporter` should be
 
 ```text
 user: admin
-pass: [provided later]
+pass: We8vnkzREsQEi4s
 ```
 
 ## Challenges
